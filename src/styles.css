@@ -5,6 +5,20 @@
 }
 
 body {
-  font-family: helvetica ,monospace, sans-serif;
+  font-family: helvetica, monospace, sans-serif;
   line-height: 1.5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-btn {
+  width: 120px;
+  height: 30px;
+}
+
+.search {
+  width: 500px;
+  height: 30px;
 }

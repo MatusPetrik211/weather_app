@@ -1,5 +1,7 @@
 import "./styles.css";
 
+const searchBtn = document.querySelector(".search-btn");
+
 async function getWeather(city) {
   try {
     const response = await fetch(
@@ -9,7 +11,6 @@ async function getWeather(city) {
       },
     );
     const jsonData = await response.json();
-    console.log(jsonData);
     const weatherData = createWeatherData(jsonData);
     console.log(weatherData);
   } catch {
@@ -46,7 +47,8 @@ function createWeatherData(jsonData) {
   };
 }
 
-getWeather("trebisov");
-getWeather("kosice");
-getWeather("bratislav");
-getWeather("fffsdfgreg");
+searchBtn.addEventListener("click", () => {
+  const location = document.querySelector(".search").value;
+  console.log("hello");
+  getWeather(location);
+});
