@@ -1,6 +1,7 @@
 import "./styles.css";
 
 const searchBtn = document.querySelector(".search-btn");
+const searchInput = document.querySelector(".search");
 
 async function getWeather(city) {
   try {
@@ -49,6 +50,12 @@ function createWeatherData(jsonData) {
 
 searchBtn.addEventListener("click", () => {
   const location = document.querySelector(".search").value;
-  console.log("hello");
   getWeather(location);
+});
+
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    searchBtn.click();
+  }
 });
