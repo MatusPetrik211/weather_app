@@ -13,6 +13,7 @@ async function getWeather(city) {
     );
     const jsonData = await response.json();
     const weatherData = createWeatherData(jsonData);
+    displayWeather(weatherData);
     console.log(weatherData);
   } catch {
     console.error("invalid place");
@@ -25,7 +26,7 @@ function createWeatherData(jsonData) {
   const humidity = jsonData.currentConditions.humidity;
   const uvIndex = jsonData.currentConditions.uvindex;
   const visibility = jsonData.currentConditions.visibility;
-  const windspeed = jsonData.currentConditions.windspeed;
+  const windSpeed = jsonData.currentConditions.windspeed;
   const date = jsonData.days[0].datetime;
   const description = jsonData.description;
 
@@ -41,7 +42,7 @@ function createWeatherData(jsonData) {
     humidity,
     uvIndex,
     visibility,
-    windspeed,
+    windSpeed,
     date,
     description,
     location,
@@ -59,3 +60,15 @@ searchInput.addEventListener("keypress", (e) => {
     searchBtn.click();
   }
 });
+
+function displayWeather(weatherData) {
+  document.querySelector(".location").textContent = weatherData.location;
+  document.querySelector(".date").textContent = weatherData.date;
+  document.querySelector(".conditions").textContent = weatherData.conditions;
+  document.querySelector(".description").textContent = weatherData.description;
+  document.querySelector(".temp").textContent = weatherData.temp;
+  document.querySelector(".humidity").textContent = weatherData.humidity;
+  document.querySelector(".uv-index").textContent = weatherData.uvIndex;
+  document.querySelector(".visibility").textContent = weatherData.visibility;
+  document.querySelector(".wind-speed").textContent = weatherData.windSpeed;
+}
