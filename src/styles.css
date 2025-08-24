@@ -13,18 +13,72 @@ body {
   align-items: center;
 }
 
-.search-btn {
-  width: 120px;
-  height: 30px;
+/* this part of code remove the x from the search input its copied form this article
+https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb */
+/* clears the ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
 }
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+/*  */
 
-.search {
-  width: 500px;
-  height: 30px;
+input[type="search"]:focus {
+  outline: none;
 }
 
 .search-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.search-bar {
+  display: flex;
+}
+
+.search-btn {
+  background-color: transparent;
+
+  width: 32px;
+  height: 40px;
+
+  /* merge the search button and search input */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 2px solid black;
+  border-left: none;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+  color: hsl(0, 0%, 40%);
+}
+
+.search {
+  width: 400px;
+  padding-left: 4px;
+
+  /* merge the search button and search input */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 2px solid black;
+  border-right: none;
+}
+
+.search,
+.search-btn {
+  font-size: 20px;
 }
