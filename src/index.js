@@ -66,9 +66,12 @@ function displayWeather(weatherData) {
   document.querySelector(".date").textContent = weatherData.date;
   document.querySelector(".conditions").textContent = weatherData.conditions;
   document.querySelector(".description").textContent = weatherData.description;
-  document.querySelector(".temp").textContent = weatherData.temp;
-  document.querySelector(".humidity").textContent = weatherData.humidity;
+  document.querySelector(".temp").textContent = `${weatherData.temp} °F`;
+  document.querySelector(".humidity").textContent =
+    `Humidity: \n ${weatherData.humidity}`;
   document.querySelector(".uv-index").textContent = weatherData.uvIndex;
   document.querySelector(".visibility").textContent = weatherData.visibility;
   document.querySelector(".wind-speed").textContent = weatherData.windSpeed;
 }
+
+getWeather("trebisov");
