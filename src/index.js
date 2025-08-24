@@ -27,13 +27,13 @@ function createWeatherData(jsonData) {
   const visibility = jsonData.currentConditions.visibility;
   const windspeed = jsonData.currentConditions.windspeed;
   const date = jsonData.days[0].datetime;
-  const desc = jsonData.description;
+  const description = jsonData.description;
 
   // get the first part of resolved location
-  const location = jsonData.resolvedAddress.split(",")[0];
+  const uneditedLocation = jsonData.resolvedAddress.split(",")[0];
 
   // modify the location so that the first letter is uppercase
-  const modLocation = `${location[0].toUpperCase()}${location.substr(1)}`;
+  const location = `${uneditedLocation[0].toUpperCase()}${uneditedLocation.substr(1)}`;
 
   return {
     temp,
@@ -43,8 +43,8 @@ function createWeatherData(jsonData) {
     visibility,
     windspeed,
     date,
-    desc,
-    modLocation,
+    description,
+    location,
   };
 }
 
