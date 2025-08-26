@@ -1,8 +1,16 @@
 import "./styles.css";
+import sadSun from "./images/sad-sun.png";
 
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector(".search");
+const weatherContainer = document.querySelector(".weather-container");
+const sadSunImg = document.createElement("img");
+sadSunImg.src = sadSun;
+sadSunImg.width = 400;
+sadSunImg.height = 400;
 
+const errorMessage = document.createElement("h3");
+errorMessage.textContent = "Couldn't find location with this name.";
 async function getWeather(city) {
   try {
     const response = await fetch(
@@ -16,7 +24,9 @@ async function getWeather(city) {
     displayWeather(weatherData);
     console.log(weatherData);
   } catch {
-    console.error("invalid place");
+    weatherContainer.textContent = "";
+    weatherContainer.append(sadSunImg);
+    weatherContainer.append(errorMessage);
   }
 }
 
@@ -82,4 +92,4 @@ function displayWeather(weatherData) {
     `Wind Speed \n ${weatherData.windSpeed} km/h`;
 }
 
-getWeather("trebisov");
+getWeather("sadwqtret324324");
