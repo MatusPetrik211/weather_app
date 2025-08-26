@@ -107,7 +107,6 @@ input[type="search"]:focus {
 
 .location {
   font-size: 60px;
-  margin-bottom: -12px;
 }
 
 .weather-top-right {
@@ -122,4 +121,16 @@ input[type="search"]:focus {
 
 .weather-bottom {
   grid-template: 1fr 1fr;
+  gap: 20px;
+}
+
+.weather-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+  white-space: pre-line;
+  height: 100px;
+  border-radius: 28px;
 }
