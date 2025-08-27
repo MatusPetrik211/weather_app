@@ -4,6 +4,7 @@ import sadSun from "./images/sad-sun.png";
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector(".search");
 const weatherContainer = document.querySelector(".weather-container");
+const errorContainer = document.querySelector(".error-container");
 const sadSunImg = document.createElement("img");
 sadSunImg.src = sadSun;
 sadSunImg.width = 400;
@@ -21,12 +22,14 @@ async function getWeather(city) {
     );
     const jsonData = await response.json();
     const weatherData = createWeatherData(jsonData);
+    errorContainer.textContent = "";
+    weatherContainer.style.display = "grid";
     displayWeather(weatherData);
     console.log(weatherData);
   } catch {
-    weatherContainer.textContent = "";
-    weatherContainer.append(sadSunImg);
-    weatherContainer.append(errorMessage);
+    weatherContainer.style.display = "none";
+    errorContainer.append(sadSunImg);
+    errorContainer.append(errorMessage);
   }
 }
 
@@ -92,4 +95,4 @@ function displayWeather(weatherData) {
     `Wind Speed \n ${weatherData.windSpeed} km/h`;
 }
 
-getWeather("sadwqtret324324");
+getWeather("trebisov");
