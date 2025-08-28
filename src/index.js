@@ -4,7 +4,7 @@ import sadSun from "./images/sad-sun.png";
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector(".search");
 const weatherContainer = document.querySelector(".weather-container");
-const errorContainer = document.querySelector(".error-container");
+const messageContainer = document.querySelector(".message-container");
 const sadSunImg = document.createElement("img");
 sadSunImg.src = sadSun;
 sadSunImg.width = 400;
@@ -14,16 +14,20 @@ const errorMessage = document.createElement("h3");
 errorMessage.textContent = "Couldn't find location with this name.";
 async function getWeather(city) {
   try {
+    weatherContainer.style.display = "none";
+    messageContainer.textContent = "Loading...";
+
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/?key=YCP4G5D49478WUF9C8T6RWA33`,
       {
         mode: "cors",
       },
     );
+
     const jsonData = await response.json();
     const weatherData = createWeatherData(jsonData);
-    errorContainer.textContent = "";
     weatherContainer.style.display = "grid";
+    messageContainer.textContent = "";
     displayWeather(weatherData);
     console.log(weatherData);
   } catch {

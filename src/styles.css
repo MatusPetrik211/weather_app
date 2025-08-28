@@ -83,7 +83,6 @@ input[type="search"] {
 
 .search {
   background-color: var(--blue-green);
-  border: none;
 
   width: 400px;
   padding-left: 4px;
@@ -92,6 +91,10 @@ input[type="search"] {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border: none;
+}
+
+.search::placeholder {
+  color: var(--navy-blue);
 }
 
 .search,
