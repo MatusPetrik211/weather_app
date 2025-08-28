@@ -26,6 +26,7 @@ async function getWeather(city) {
     );
 
     const jsonData = await response.json();
+    console.log(jsonData);
     const weatherData = createWeatherData(jsonData);
     weatherContainer.style.display = "grid";
     messageContainer.textContent = "";
@@ -35,9 +36,7 @@ async function getWeather(city) {
     weatherContainer.style.display = "none";
     messageContainer.style.position = "absolute";
     messageContainer.textContent = "";
-    messageContainer.style.top = "30%";
-    messageContainer.append(sadSunImg);
-    messageContainer.append(errorMessage);
+    messageContainer.append(sadSunImg, errorMessage);
   }
 }
 
@@ -48,6 +47,7 @@ function createWeatherData(jsonData) {
   const uvIndex = jsonData.currentConditions.uvindex;
   const visibility = jsonData.currentConditions.visibility;
   const windSpeed = jsonData.currentConditions.windspeed;
+  const icon = jsonData.currentConditions.icon;
   const description = jsonData.description;
 
   // get the date in format year-month-day
@@ -70,6 +70,7 @@ function createWeatherData(jsonData) {
     visibility,
     windSpeed,
     date,
+    icon,
     description,
     location,
   };
@@ -87,7 +88,7 @@ searchInput.addEventListener("keypress", (e) => {
   }
 });
 
-function displayWeather(weatherData) {
+async function displayWeather(weatherData) {
   document.querySelector(".location").textContent = weatherData.location;
   document.querySelector(".date").textContent = weatherData.date;
   document.querySelector(".conditions").textContent = weatherData.conditions;
@@ -101,6 +102,22 @@ function displayWeather(weatherData) {
     `Visibility \n ${weatherData.visibility}`;
   document.querySelector(".wind-speed").textContent =
     `Wind Speed \n ${weatherData.windSpeed} km/h`;
+  const weatherIcon = document.querySelector(".weather-icon");
+
+  weatherIcon.style.visibility = "visible";
+  getIcon(weatherData.icon).then((results) => {
+    weatherIcon.src = results.default || results;
+  });
+}
+
+async function getIcon(iconName) {
+  try {
+    const icon = await import(`./images/${iconName}.png`);
+    return icon;
+  } catch (err) {
+    alert(`Couldn't get the icon. error: ${err}`);
+    return sadSun;
+  }
 }
 
 getWeather("trebisov");

@@ -131,12 +131,13 @@ input[type="search"] {
 
 .weather-top-right {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .temp {
-  font-size: 80px;
+  font-size: 5vw;
 }
 
 .weather-bottom {
@@ -164,4 +165,8 @@ input[type="search"] {
 
   position: absolute;
   top: 30%;
+}
+
+.weather-icon {
+  visibility: hidden;
 }
