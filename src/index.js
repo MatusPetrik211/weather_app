@@ -16,6 +16,7 @@ async function getWeather(city) {
   try {
     weatherContainer.style.display = "none";
     messageContainer.textContent = "Loading...";
+    messageContainer.style.position = "relative";
 
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/?key=YCP4G5D49478WUF9C8T6RWA33`,
@@ -32,8 +33,11 @@ async function getWeather(city) {
     console.log(weatherData);
   } catch {
     weatherContainer.style.display = "none";
-    errorContainer.append(sadSunImg);
-    errorContainer.append(errorMessage);
+    messageContainer.style.position = "absolute";
+    messageContainer.textContent = "";
+    messageContainer.style.top = "30%";
+    messageContainer.append(sadSunImg);
+    messageContainer.append(errorMessage);
   }
 }
 
