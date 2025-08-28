@@ -137,6 +137,7 @@ input[type="search"] {
 }
 
 .temp {
+  white-space: nowrap;
   font-size: 5vw;
 }
 
