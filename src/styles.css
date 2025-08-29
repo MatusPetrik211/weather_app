@@ -171,3 +171,25 @@ input[type="search"] {
 .weather-icon {
   visibility: hidden;
 }
+
+.change-temp-unit {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  padding: 12px;
+  font-size: 20px;
+  font-weight: bold;
+
+  background-color: var(--navy-blue);
+  color: var(--baby-blue);
+  border: none;
+  border-radius: 12px;
+}
+
+.change-temp-unit:hover {
+  background-color: var(--baby-blue);
+  color: var(--navy-blue);
+
+  cursor: pointer;
+}

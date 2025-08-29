@@ -1,6 +1,7 @@
 import "./styles.css";
 import sadSun from "./images/sad-sun.png";
 
+const unitBtn = document.querySelector(".change-temp-unit");
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector(".search");
 const weatherContainer = document.querySelector(".weather-container");
@@ -88,12 +89,37 @@ searchInput.addEventListener("keypress", (e) => {
   }
 });
 
+unitBtn.addEventListener("click", () => {
+  let temp = Number(document.querySelector(".temp").textContent.split("°")[0]);
+
+  if (unitBtn.textContent === "°C") {
+    unitBtn.textContent = "°F";
+    document.querySelector(".temp").textContent = `${toCelsius(temp)} °C`;
+  } else if (unitBtn.textContent === "°F") {
+    unitBtn.textContent = "°C";
+    document.querySelector(".temp").textContent = `${toFahrenheit(temp)} °F`;
+  }
+});
+
+function toCelsius(fahrenheit) {
+  return Math.round(((fahrenheit - 32) * 5) / 9);
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+
 async function displayWeather(weatherData) {
   document.querySelector(".location").textContent = weatherData.location;
   document.querySelector(".date").textContent = weatherData.date;
   document.querySelector(".conditions").textContent = weatherData.conditions;
   document.querySelector(".description").textContent = weatherData.description;
-  document.querySelector(".temp").textContent = `${weatherData.temp} °F`;
+  if (unitBtn.textContent === "°F") {
+    document.querySelector(".temp").textContent =
+      `${toCelsius(weatherData.temp)} °C`;
+  } else {
+    document.querySelector(".temp").textContent = `${weatherData.temp} °F`;
+  }
   document.querySelector(".humidity").textContent =
     `Humidity \n ${weatherData.humidity} %`;
   document.querySelector(".uv-index").textContent =
