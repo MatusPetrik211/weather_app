@@ -30,6 +30,11 @@ async function getWeather(city) {
     console.log(jsonData);
     const weatherData = createWeatherData(jsonData);
     weatherContainer.style.display = "grid";
+    weatherContainer.style.opacity = "0";
+
+    setTimeout(() => {
+      weatherContainer.style.opacity = "1";
+    }, 500);
     messageContainer.textContent = "";
     displayWeather(weatherData);
     console.log(weatherData);
