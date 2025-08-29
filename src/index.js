@@ -15,6 +15,7 @@ const errorMessage = document.createElement("h3");
 errorMessage.textContent = "Couldn't find location with this name.";
 async function getWeather(city) {
   try {
+    weatherContainer.style.visibility = "visible";
     weatherContainer.style.display = "none";
     messageContainer.textContent = "Loading...";
     messageContainer.style.position = "relative";
