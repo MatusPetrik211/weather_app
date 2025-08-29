@@ -27,7 +27,6 @@ async function getWeather(city) {
     );
 
     const jsonData = await response.json();
-    console.log(jsonData);
     const weatherData = createWeatherData(jsonData);
     weatherContainer.style.display = "grid";
     weatherContainer.style.opacity = "0";
@@ -37,7 +36,6 @@ async function getWeather(city) {
     }, 500);
     messageContainer.textContent = "";
     displayWeather(weatherData);
-    console.log(weatherData);
   } catch {
     weatherContainer.style.display = "none";
     messageContainer.style.position = "absolute";
@@ -150,5 +148,3 @@ async function getIcon(iconName) {
     return sadSun;
   }
 }
-
-getWeather("trebisov");
